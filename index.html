@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Tic Tac Toe</title>
+		<meta name = "author" content = "Vamsi Krishna Nandi"/>
+		<script language = "JavaScript" type = "text/JavaScript">
+			var count=0,numOfX=0;
+			var arr = new Array();
+			arr = [1,2,3,4,5,6,7,8,9];
+			function assign(str,num)
+			{
+				count++;
+				if(count%2==0)
+				{
+				messages.value = "Player 1 (X) turn";
+				str.value = "O";
+				document.getElementById(str.id).disabled = true;
+				document.getElementById(str.id).style.color = "pink";
+				document.getElementById(str.id).style.background = "rgba(0,255,0,0.4)";
+				document.getElementById(str.id).style.cursor = "auto";
+				arr[num] = "O";
+				if(((arr[0]==arr[4])&&(arr[4]==arr[8]))||((arr[2]==arr[4])&&(arr[4]==arr[6]))||((arr[0]==arr[1])&&(arr[1]==arr[2]))||((arr[3]==arr[4])&&(arr[4]==arr[5]))||((arr[6]==arr[7])&&(arr[7]==arr[8]))||((arr[0]==arr[3])&&(arr[3]==arr[6]))||((arr[1]==arr[4])&&(arr[4]==arr[7]))||((arr[2]==arr[5])&&(arr[5]==arr[8])))
+				{
+					messages.value = "Player 2 (O) won the game";
+					document.getElementById("messages").style.color = "red";
+					var spaceDisable = document.getElementsByName("space");
+					for (var i=0;i<9;i++)
+					{
+					spaceDisable[i].disabled = "true";
+					spaceDisable[i].style.cursor = "auto";
+					}
+					document.getElementById("restart").style.visibility = "visible";
+				}
+				}
+				else
+				{
+				messages.value = "Player 2 (O) turn";
+				str.value = "X";
+				document.getElementById(str.id).disabled = true;
+				document.getElementById(str.id).style.color = "blue";
+				document.getElementById(str.id).style.background = "rgba(255,0,0,0.3)";
+				document.getElementById(str.id).style.cursor = "auto";
+				arr[num] = "X";
+				numOfX++;
+				
+				if(((arr[0]==arr[4])&&(arr[4]==arr[8]))||((arr[2]==arr[4])&&(arr[4]==arr[6]))||((arr[0]==arr[1])&&(arr[1]==arr[2]))||((arr[3]==arr[4])&&(arr[4]==arr[5]))||((arr[6]==arr[7])&&(arr[7]==arr[8]))||((arr[0]==arr[3])&&(arr[3]==arr[6]))||((arr[1]==arr[4])&&(arr[4]==arr[7]))||((arr[2]==arr[5])&&(arr[5]==arr[8])))
+				{
+					messages.value = "Player 1 (X) won the game";
+					document.getElementById("messages").style.color = "red";
+					var spaceDisable = document.getElementsByName("space");
+					for (var i=0;i<9;i++)
+					{
+					spaceDisable[i].disabled = "true";
+					spaceDisable[i].style.cursor = "auto";
+					}
+					document.getElementById("restart").style.visibility = "visible";
+				}
+				else if(numOfX==5)
+				{messages.value = "Game DRAW";
+				document.getElementById("messages").style.color = "red";
+				document.getElementById("restart").style.visibility = "visible";}
+				}
+			}
+			function msgs(){
+				messages.value = "Player 1 (X) turn";
+			}
+			</script>
+			<style>
+				body{
+					background-color:rgba(0,0,255,0.3);
+					margin:0.2cm;
+				}
+				td>input{
+					width:100px;
+					height:100px;
+					font-size:24pt;
+					background-color:rgba(0,0,255,0.1);
+					border-radius:15px;
+					cursor:pointer;
+				}
+				div>input{
+					color:blue;
+					text-align:center;
+					padding:7px;
+					font-size:15pt;
+					background-color:rgba(0,255,0,0.2);
+					border-radius:15px;
+				}
+				#heading{
+					text-align:center;
+					font-size:40pt;
+					color:green;
+					font-variant:small-caps;
+					text-shadow: 4px 4px 8px brown;
+					cursor:default;
+				}
+			</style>
+	</head>
+
+	<body onload = "msgs()">
+		<div id = "heading">Tic Tac Toe</div>
+		<br /><br />
+		<div align = "center">
+			<input type = "text" id = "messages" value = "" size = "20" disabled/>
+		</div>
+		<br /><br />
+		<table cellspacing = "5" align = "center" style = "text-align:center;table-layout:fixed;" >
+			<colgroup span = "3">
+				<col width = "100"></col>
+				<col width = "100"></col>
+				<col width = "100"></col>
+			</colgroup>
+			<tr>
+				<td><input type = "button" name = "space" id = "zero" value = "" onclick = "assign(zero,0)"/></td>
+				<td><input type = "button" name = "space" id = "one" value = "" onclick = "assign(one,1)"/></td>
+				<td><input type = "button" name = "space" id = "two" value = "" onclick = "assign(two,2)"/></td>
+			</tr>
+			<tr>
+				<td><input type = "button" name = "space" id = "three" value = "" onclick = "assign(three,3)"/></td>
+				<td><input type = "button" name = "space" id = "four" value = "" onclick = "assign(four,4)"/></td>
+				<td><input type = "button" name = "space" id = "five" value = "" onclick = "assign(five,5)"/></td>
+			</tr>
+			<tr>
+				<td><input type = "button" name = "space" id = "six" value = "" onclick = "assign(six,6)"/></td>
+				<td><input type = "button" name = "space" id = "seven" value = "" onclick = "assign(seven,7)"/></td>
+				<td><input type = "button" name = "space" id = "eight" value = "" onclick = "assign(eight,8)"/></td>
+			</tr>
+		</table>
+		<br />
+		<div align = "center">
+			<input type = "button" id = "restart" value = "Play Again" style = "visibility:hidden;cursor:pointer;padding:8px 15px;" onclick = "window.location.reload()"/>
+		</div>
+	</body>
